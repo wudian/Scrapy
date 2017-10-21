@@ -4,4 +4,4 @@
 *.log  
 
 #过滤文件夹Debug,Release,obj  
-db/
+db/*

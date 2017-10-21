@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import time
+import os
 import traceback
 import sys
 import urllib2
@@ -30,7 +31,7 @@ from shared.util.util import get_system_uuid
 
 
 WRITE_DB = False
-LINUX = False
+LINUX = True
 display = None
 engine = None
 
@@ -49,6 +50,11 @@ session = DBSession()
 investment_platform = 'www.itjuzi.com'.encode('utf-8')
 logging = generate_logger("tianyancha.log", "tianyancha")
 
+root_dir='db'
+name_list = []
+temp_list = os.listdir(root_dir)
+for name in temp_list:
+    name_list.append(name[0:10])
 
 def login():
     try:
@@ -115,6 +121,8 @@ def get_from_one_page(url):
             driver_song.get(url)
 
             name = song_cm.find_elment_by_itjuzi(driver_song.find_element_by_css_selector, 'div.t_mp3_info>h1', using_txt=True, rtValWhnErr='')
+            if name[0:10] in name_list:
+                continue
             ac_down = song_cm.find_elment_by_itjuzi(driver_song.find_element_by_class_name, 'ac_down')
             ac_down.click()
             url = song_cm.find_elment_by_itjuzi(driver_song.find_element_by_css_selector, 'div.content>iframe', attribt='src', rtValWhnErr='')
@@ -151,6 +159,4 @@ if __name__ == '__main__':
     driver.close()
     driver.quit()
     session.close()
-    if LINUX:
-        display.stop()
 
