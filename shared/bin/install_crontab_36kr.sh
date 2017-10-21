@@ -1,0 +1,1 @@
+echo "*/1 * * * *  source /etc/profile ; sh -x /root/investment_platform_crawler/shared/bin/start_36kr_when_no.sh" | crontab -
