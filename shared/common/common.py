@@ -5,7 +5,17 @@ import traceback
 
 import datetime
 
+def url2filename(url):
+    return url.replace('/','^').replace(':','~')
 
+def save_page(driver, dir, fn):
+    with open('%s/%s.1' % (dir,fn), 'w') as f:
+        f.write(driver.find_element_by_tag_name('html').get_attribute('innerHTML').encode('utf8'))
+
+    with open('%s/%s.2' % (dir,fn),'w') as f:
+        f.write(driver.page_source.encode('utf8'))
+
+        
 def set_dct(dct,k,v):
     dct[k] = v
     return True

@@ -10,14 +10,11 @@ from shared.conf.conf import db_connect_url, chrome_options_using
 import time
 import traceback
 import logging
+from shared.common.common import generate_logger,set_dct
 
 
 
-logging.basicConfig(
-level=logging.INFO,
-format='%(asctime)s %(message)s',
-handlers=[logging.FileHandler("info.log"),
-logging.StreamHandler()])
+logging = generate_logger("huxiu.log", "")
 
 wrong_number = 1
 def error2null(driver,func,*arg):
@@ -173,7 +170,7 @@ engine = create_engine(db_connect_url)
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
-driver = webdriver.Chrome(chrome_options=chrome_options_using)
+driver = webdriver.Chrome()#chrome_options=chrome_options_using
 driver.get("https://www.huxiu.com/chuangye")
 for i in range(300):
     scope_list = driver.find_elements(By.CSS_SELECTOR,".cy-cp-box.transition")

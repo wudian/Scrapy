@@ -1,7 +1,7 @@
 
 from selenium.webdriver.chrome.options import Options
 
-db_connect_url = 'mysql+pymysql://root:root@localhost:3306/investment_platform_db?charset=utf8'
+db_connect_url = 'mysql+pymysql://root:wudian@localhost:3306/ipd?charset=utf8'
 db_connect_url_bisz_table_id_start = 'mysql+pymysql://root:root@localhost:3306/investment_platform_db{bisz_table_id_start}?charset=utf8'
 db_connect_url4init = 'mysql+pymysql://root:root@localhost:3306/test?charset=utf8'
 
